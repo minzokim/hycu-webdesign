@@ -21,8 +21,20 @@ body{
     margin:0 auto;
 }
 
+.logo-area{
+    padding:28px 0 10px;
+    text-align:left;
+}
+
+.logo-area img{
+    width:424px;
+    height:103px;
+    object-fit:contain;
+    display:block;
+}
+
 header{
-    padding:24px 0;
+    padding:18px 0 24px;
     border-bottom:1px solid #d8d1c8;
 }
 
@@ -189,6 +201,12 @@ footer{
         width:90%;
     }
 
+    .logo-area img{
+        width:100%;
+        height:auto;
+        max-width:424px;
+    }
+
     .character-main{
         flex-direction:column;
     }
@@ -213,6 +231,10 @@ footer{
 <body>
 
 <div class="wrapper">
+
+<div class="logo-area">
+    <img src="logo.png" alt="로고">
+</div>
 
 <header>
     <h1>캐릭터 사이트 제작하기</h1>
@@ -350,7 +372,7 @@ footer{
 </section>
 
 <footer>
-    <p>This site was created during <a href="http://hycu.ac.kr">HYCU web design class</a>&copy;MJ</p>
+    <p>This site was created during <a href="http://hycu.ac.kr">HYCU web design class</a> &copy;MJ</p>
 </footer>
 
 </div>
