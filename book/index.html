@@ -1,6 +1,3 @@
-
-
-```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,111 +5,160 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>센서티브 - 책 소개</title>
 
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#f5f2ee;
+    font-family:"Pretendard", sans-serif;
+    background:#f6f1eb;
     color:#1f2937;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 .header{
-    padding:24px 8%;
+    height:72px;
+    padding:0 8%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:#fffaf4;
-    border-bottom:1px solid #eadfD2;
+    background:rgba(255,250,245,0.85);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:1px solid rgba(120,90,60,0.12);
 }
 
 .logo{
-    font-weight:bold;
-    font-size:20px;
-    letter-spacing:1px;
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:0.5px;
 }
 
 .nav a{
-    margin-left:22px;
-    color:#475569;
+    margin-left:24px;
+    color:#4b5563;
     text-decoration:none;
     font-size:14px;
+    font-weight:600;
+    transition:0.25s ease;
+}
+
+.nav a:hover{
+    color:#111827;
 }
 
 .hero{
-    padding:70px 8%;
+    min-height:720px;
+    padding:90px 8%;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:60px;
-    background:linear-gradient(135deg,#fffaf4,#eee3d5);
+    gap:70px;
+    background:
+        linear-gradient(90deg, rgba(246,241,235,0.96) 0%, rgba(246,241,235,0.82) 45%, rgba(246,241,235,0.25) 100%),
+        url("book-bg.jpg") center/cover no-repeat;
+    animation:softZoom 1.3s ease forwards;
 }
 
 .hero-text{
-    flex:1;
+    flex:1.1;
+    animation:fadeUp 0.9s ease forwards;
 }
 
-.hero-text .label{
+.badge{
     display:inline-block;
-    padding:8px 14px;
+    padding:9px 16px;
+    border-radius:999px;
     background:#1f2937;
     color:white;
-    border-radius:30px;
     font-size:13px;
-    margin-bottom:22px;
+    font-weight:700;
+    margin-bottom:24px;
 }
 
-.hero-text h1{
+.hero h1{
     margin:0;
-    font-size:62px;
-    line-height:1.1;
+    font-size:76px;
+    line-height:1;
+    letter-spacing:-3px;
 }
 
-.hero-text h3{
-    margin-top:18px;
-    font-size:22px;
-    color:#6b7280;
-    font-weight:normal;
+.hero h3{
+    margin:20px 0 0;
+    font-size:24px;
+    color:#6b5d50;
+    font-weight:500;
 }
 
-.hero-text p{
-    margin-top:28px;
+.hero p{
+    margin-top:30px;
+    width:86%;
+    font-size:18px;
     line-height:1.9;
-    font-size:17px;
     color:#374151;
 }
 
-.hero-cover{
-    width:360px;
-    text-align:center;
-}
-
-.hero-cover img{
-    width:300px;
-    border-radius:18px;
-    box-shadow:0 25px 45px rgba(0,0,0,0.25);
+.hero-buttons{
+    margin-top:34px;
 }
 
 .btn{
     display:inline-block;
-    margin-top:28px;
-    padding:14px 24px;
-    background:#1f2937;
-    color:white;
+    padding:15px 24px;
+    border-radius:12px;
     text-decoration:none;
-    border-radius:10px;
+    font-weight:700;
+    font-size:15px;
+    margin-right:10px;
+    transition:0.25s ease;
 }
 
 .btn:hover{
-    background:#111827;
+    transform:translateY(-3px);
+}
+
+.btn.dark{
+    background:#1f2937;
+    color:white;
+}
+
+.btn.light{
+    background:rgba(255,255,255,0.78);
+    color:#1f2937;
+    border:1px solid rgba(31,41,55,0.15);
+}
+
+.cover-wrap{
+    flex:0.9;
+    display:flex;
+    justify-content:center;
+}
+
+.cover-card{
+    padding:22px;
+    border-radius:32px;
+    background:rgba(255,255,255,0.45);
+    backdrop-filter:blur(16px);
+    box-shadow:0 30px 70px rgba(44,31,18,0.25);
+    animation:fadeUp 1s ease forwards, floatBook 4s ease-in-out infinite;
+}
+
+.cover-card img{
+    width:330px;
+    border-radius:20px;
+    display:block;
+    box-shadow:0 22px 45px rgba(0,0,0,0.22);
 }
 
 .container{
-    width:1100px;
-    margin:70px auto;
+    width:1120px;
+    margin:80px auto;
 }
 
 .info-grid{
@@ -123,89 +169,160 @@ body{
 
 .info-card{
     background:white;
-    padding:28px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.07);
+    padding:30px;
+    border-radius:24px;
+    box-shadow:0 12px 28px rgba(72,54,38,0.08);
+    transition:0.3s ease;
+    animation:fadeUp 0.9s ease forwards;
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 36px rgba(72,54,38,0.14);
 }
 
 .info-card span{
-    color:#9a7b59;
+    color:#a07c58;
     font-size:13px;
-    font-weight:bold;
+    font-weight:800;
 }
 
 .info-card h2{
     margin:12px 0;
-    font-size:22px;
+    font-size:23px;
+    letter-spacing:-0.5px;
 }
 
 .info-card p{
+    margin:0;
+    color:#5b6472;
     line-height:1.8;
-    color:#4b5563;
 }
 
 .section{
     margin-top:70px;
     background:white;
-    padding:42px;
-    border-radius:24px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.07);
+    padding:48px;
+    border-radius:30px;
+    box-shadow:0 12px 28px rgba(72,54,38,0.08);
+    transition:0.3s ease;
+    animation:fadeUp 0.9s ease forwards;
 }
 
-.section h2{
-    margin-top:0;
-    font-size:30px;
-    border-bottom:2px solid #eee3d5;
-    padding-bottom:14px;
+.section-title{
+    margin:0 0 26px;
+    font-size:34px;
+    letter-spacing:-1.5px;
 }
 
 .section p{
-    line-height:1.9;
     font-size:17px;
+    line-height:2;
     color:#374151;
 }
 
 .quote{
-    margin-top:28px;
-    padding:28px;
-    background:#f8f3ec;
-    border-left:6px solid #b89b76;
-    border-radius:14px;
-    line-height:1.9;
+    margin-top:30px;
+    padding:28px 32px;
+    background:#f8f1e8;
+    border-left:6px solid #b69574;
+    border-radius:18px;
     color:#4b5563;
+    line-height:1.9;
+    font-weight:500;
 }
 
-.list{
+.mood{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    align-items:center;
+}
+
+.mood img{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    border-radius:26px;
+    box-shadow:0 16px 35px rgba(72,54,38,0.15);
+    transition:0.35s ease;
+}
+
+.mood img:hover{
+    transform:scale(1.03);
+}
+
+.keyword-list{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:16px;
-    margin-top:24px;
+    margin-top:28px;
 }
 
-.list div{
-    padding:18px;
-    background:#f8f3ec;
-    border-radius:14px;
-    font-size:16px;
+.keyword-list div{
+    padding:19px 22px;
+    background:#f8f1e8;
+    border-radius:16px;
+    color:#4b5563;
+    font-weight:600;
 }
 
 .review{
-    font-size:17px;
-    line-height:2;
+    background:#1f2937;
+    color:white;
+}
+
+.review .section-title{
+    color:white;
+}
+
+.review p{
+    color:#e5e7eb;
 }
 
 .footer{
-    padding:32px;
+    padding:36px;
     text-align:center;
-    color:#6b7280;
+    color:#7b6b5b;
     background:#fffaf4;
-    border-top:1px solid #eadfD2;
+    border-top:1px solid rgba(120,90,60,0.12);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes floatBook{
+    0%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+    100%{transform:translateY(0)}
+}
+
+@keyframes softZoom{
+    from{transform:scale(1.03)}
+    to{transform:scale(1)}
 }
 
 @media(max-width:900px){
     .hero{
         flex-direction:column;
         text-align:center;
+        padding:70px 6%;
+    }
+
+    .hero p{
+        width:100%;
+    }
+
+    .hero h1{
+        font-size:54px;
     }
 
     .container{
@@ -213,12 +330,13 @@ body{
     }
 
     .info-grid,
-    .list{
+    .mood,
+    .keyword-list{
         grid-template-columns:1fr;
     }
 
-    .hero-text h1{
-        font-size:44px;
+    .cover-card img{
+        width:270px;
     }
 }
 </style>
@@ -226,111 +344,142 @@ body{
 
 <body>
 
-<div class="header">
+<header class="header">
     <div class="logo">BOOK ARCHIVE</div>
-    <div class="nav">
+
+    <nav class="nav">
         <a href="../">Home</a>
         <a href="#intro">Intro</a>
+        <a href="#point">Point</a>
         <a href="#review">Review</a>
-    </div>
-</div>
+    </nav>
+</header>
 
-<div class="hero">
+<section class="hero">
+
     <div class="hero-text">
-        <span class="label">오늘의 추천 도서</span>
+        <span class="badge">오늘의 추천 도서</span>
+
         <h1>센서티브</h1>
+
         <h3>남들보다 민감한 사람을 위한 섬세한 심리학</h3>
+
         <p>
             일자 샌드의 『센서티브』는 예민함을 약점이 아닌 하나의 기질로 바라보게 하는 책이다.
             작은 자극에도 쉽게 지치고 관계 속에서 많은 에너지를 소모하는 사람들에게
             자신을 이해하는 새로운 관점을 제시한다.
         </p>
-        <a class="btn" href="https://www.aladin.co.kr" target="_blank">온라인 서점 바로가기</a>
+
+        <div class="hero-buttons">
+            <a class="btn dark" href="#intro">책 소개 보기</a>
+            <a class="btn light" href="https://www.aladin.co.kr" target="_blank">온라인 서점</a>
+        </div>
     </div>
 
-    <div class="hero-cover">
-        <img src="sensitive.jpg" alt="센서티브 책 표지">
+    <div class="cover-wrap">
+        <div class="cover-card">
+            <img src="sensitive.jpg" alt="센서티브 책 표지">
+        </div>
     </div>
+
+</section>
+
+<main class="container">
+
+<section class="info-grid">
+
+<div class="info-card">
+    <span>AUTHOR</span>
+    <h2>일자 샌드</h2>
+    <p>민감한 기질과 감정, 관계의 어려움을 섬세하게 다루는 심리 상담 전문가이다.</p>
 </div>
 
-<div class="container">
+<div class="info-card">
+    <span>KEYWORD</span>
+    <h2>민감함</h2>
+    <p>쉽게 지치는 이유를 성격 문제가 아니라 자극을 받아들이는 방식의 차이로 설명한다.</p>
+</div>
 
-    <div class="info-grid">
-        <div class="info-card">
-            <span>AUTHOR</span>
-            <h2>일자 샌드</h2>
-            <p>
-                사람의 감정과 관계, 민감한 기질에 대해 섬세하게 다루는 심리 상담 전문가이다.
-            </p>
-        </div>
+<div class="info-card">
+    <span>RECOMMEND</span>
+    <h2>자기 이해</h2>
+    <p>감정 소모가 크거나 혼자만 예민하다고 느껴온 사람에게 추천할 만하다.</p>
+</div>
 
-        <div class="info-card">
-            <span>KEYWORD</span>
-            <h2>민감함</h2>
-            <p>
-                쉽게 지치는 이유를 성격 문제가 아니라 자극을 받아들이는 방식의 차이로 설명한다.
-            </p>
-        </div>
+</section>
 
-        <div class="info-card">
-            <span>RECOMMEND</span>
-            <h2>자기 이해</h2>
-            <p>
-                감정 소모가 큰 사람, 혼자만 예민하다고 느껴온 사람에게 특히 추천할 만하다.
-            </p>
-        </div>
-    </div>
+<section class="section" id="intro">
 
-    <div class="section" id="intro">
-        <h2>책 소개</h2>
-        <p>
-            『센서티브』는 남들보다 민감하고 쉽게 지치는 사람들을 위한 심리 에세이이다.
-            저자는 예민함을 고쳐야 할 단점으로 보지 않는다. 오히려 민감한 사람들은 더 많은 정보를 받아들이고,
-            감정과 분위기를 깊게 감지하는 사람이라고 설명한다.
-        </p>
-        <p>
-            이 책은 예민함 때문에 스스로를 탓해온 사람들에게 자신의 성향을 객관적으로 이해할 수 있는 기준을 제공한다.
-            동시에 관계 속에서 에너지를 지키는 방법, 자극을 조절하는 방법, 자신의 기질을 부정하지 않고 살아가는 방법을 알려준다.
-        </p>
+<h2 class="section-title">책 소개</h2>
 
-        <div class="quote">
-            민감함은 나약함이 아니라 세상을 더 섬세하게 받아들이는 방식이다.
-            이 책은 그 사실을 차분하고 설득력 있게 보여준다.
-        </div>
-    </div>
+<p>
+『센서티브』는 남들보다 민감하고 쉽게 지치는 사람들을 위한 심리 에세이이다.
+저자는 예민함을 고쳐야 할 단점으로 보지 않는다.
+오히려 민감한 사람들은 더 많은 정보를 받아들이고 감정과 분위기를 깊게 감지하는 사람이라고 설명한다.
+</p>
 
-    <div class="section">
-        <h2>주요 내용</h2>
-        <div class="list">
-            <div>민감한 사람의 특징</div>
-            <div>관계 속에서 쉽게 지치는 이유</div>
-            <div>스트레스와 감정 관리</div>
-            <div>자극으로부터 나를 보호하는 습관</div>
-            <div>민감함을 강점으로 받아들이는 방법</div>
-            <div>스스로를 이해하는 심리적 기준</div>
-        </div>
-    </div>
+<p>
+이 책은 예민함 때문에 스스로를 탓해온 사람들에게 자신의 성향을 객관적으로 이해할 수 있는 기준을 제공한다.
+동시에 관계 속에서 에너지를 지키는 방법, 자극을 조절하는 방법,
+자신의 기질을 부정하지 않고 살아가는 방법을 알려준다.
+</p>
 
-    <div class="section" id="review">
-        <h2>읽고 느낀 점</h2>
-        <p class="review">
-            평소 작은 일에도 쉽게 지치거나 감정 소모가 크다고 느껴왔는데, 그 이유를 명확히 설명해주는 책을 찾기 어려웠다.
-            이 책은 그런 면에서 꽤 인상적이었다. 특히 민감한 기질을 단순히 나약함이나 성격적 결함으로 보지 않고,
-            자극을 처리하는 방식의 차이로 설명하는 부분이 흥미로웠다.
-        </p>
-        <p class="review">
-            별것 아닌 말 한마디가 오래 남거나 충분히 쉬었는데도 피로감이 가시지 않는 경험이
-            의지의 문제가 아닐 수 있다는 시각은 읽는 내내 생각할 거리를 주었다.
-            자기 자신을 이해하고 싶은 사람이나 감정 소모가 크다고 느끼는 사람에게 추천하고 싶은 책이다.
-        </p>
-    </div>
+<div class="quote">
+민감함은 나약함이 아니라 세상을 더 섬세하게 받아들이는 방식이다.
+이 책은 그 사실을 차분하고 설득력 있게 보여준다.
+</div>
+
+</section>
+
+<section class="section mood" id="point">
+
+<div>
+<h2 class="section-title">이 책의 핵심 포인트</h2>
+
+<p>
+『센서티브』는 예민한 사람이 자신의 기질을 억지로 바꾸기보다,
+자신에게 맞는 속도와 환경을 찾는 것이 중요하다고 말한다.
+그래서 단순한 위로를 넘어 생활 속에서 적용할 수 있는 태도와 방향을 제시한다.
+</p>
+
+<div class="keyword-list">
+<div>민감한 사람의 특징</div>
+<div>관계 속 피로감</div>
+<div>감정 소모 관리</div>
+<div>자극으로부터 나를 보호하는 습관</div>
+</div>
 
 </div>
 
-<div class="footer">
-    2026 HYCU Web Design Assignment · Book Introduction Page
-</div>
+<img src="reading.jpg" alt="독서 분위기 이미지">
+
+</section>
+
+<section class="section review" id="review">
+
+<h2 class="section-title">읽고 느낀 점</h2>
+
+<p>
+평소 작은 일에도 쉽게 지치거나 감정 소모가 크다고 느껴왔는데,
+그 이유를 명확히 설명해주는 책을 찾기 어려웠다.
+이 책은 그런 면에서 꽤 인상적이었다.
+특히 민감한 기질을 단순히 나약함이나 성격적 결함으로 보지 않고,
+자극을 처리하는 방식의 차이로 설명하는 부분이 흥미로웠다.
+</p>
+
+<p>
+별것 아닌 말 한마디가 오래 남거나 충분히 쉬었는데도 피로감이 가시지 않는 경험이
+의지의 문제가 아닐 수 있다는 시각은 읽는 내내 생각할 거리를 주었다.
+자기 자신을 이해하고 싶은 사람이나 감정 소모가 크다고 느끼는 사람에게 추천하고 싶은 책이다.
+</p>
+
+</section>
+
+</main>
+
+<footer class="footer">
+2026 HYCU Web Design Assignment · Book Introduction Page
+</footer>
 
 </body>
 </html>
-```
