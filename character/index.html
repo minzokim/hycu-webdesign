@@ -1,9 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리락쿠마 캐릭터 소개</title>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+<style>
+body{
+    margin:0;
+    font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;
+    background:#f7f3ee;
+    color:#222;
+}
+
+.wrapper{
+    width:1000px;
+    margin:0 auto;
+}
+
+.logo-area{
+    padding:28px 0 10px;
+    text-align:center;
+}
+
+.logo-area img{
+    width:424px;
+    height:103px;
+    object-fit:contain;
+    display:inline-block;
+}
+
+header{
+    padding:18px 0 24px;
+    border-bottom:1px solid #d8d1c8;
+}
+
+header h1{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
+}
+
+header p{
+    margin:8px 0 0;
+    font-size:14px;
+    color:#666;
+}
+
+.character-main{
+    display:flex;
+    gap:45px;
+    padding:50px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.character-img{
+    width:320px;
+    height:320px;
+    background:white;
+    border:1px solid #ddd;
+    overflow:hidden;
+}
+
+.character-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+}
+
+.info{
+    flex:1;
+}
+
+.info .tag{
+    color:#8b6d46;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.info h2{
+    margin:0;
+    font-size:46px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.info h3{
+    margin:12px 0 25px;
+    font-size:20px;
+    font-weight:400;
+    color:#555;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:25px 0;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
+    font-size:15px;
+}
+
+th{
+    width:130px;
+    background:#eee8df;
+    font-weight:600;
+}
+
+.info p,
+.section p{
+    line-height:1.65;
+    font-size:16px;
+}
+
+.section{
+    padding:42px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.section h2{
+    margin:0 0 20px;
+    font-size:26px;
+    font-weight:700;
+}
+
+.list-box,
+.review-box{
+    background:white;
+    border:1px solid #ddd;
+    padding:24px;
+}
+
+ul{
+    margin:0;
+    padding-left:22px;
+    line-height:1.75;
+}
+
+.friend-wrap{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+}
+
+.friend{
+    background:white;
+    border:1px solid #ddd;
+    padding:18px;
+}
+
+.friend img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    border:1px solid #eee;
+    margin-bottom:16px;
+}
+
+.friend h3{
+    margin:0 0 10px;
+    font-size:20px;
+}
+
+.friend p{
+    margin:0;
+    line-height:1.65;
+    font-size:15px;
+    color:#444;
+}
+
+.quote{
+    margin-top:20px;
+    padding:15px 20px;
+    background:#eee8df;
+    border-left:4px solid #8b6d46;
+    line-height:1.55;
+    color:#444;
+}
+
+footer{
+    padding:25px 0 40px;
+    color:#777;
+    font-size:13px;
+}
+
+@media(max-width:800px){
+    .wrapper{
+        width:90%;
+    }
+
+    .logo-area img{
+        width:100%;
+        height:auto;
+        max-width:424px;
+    }
+
+    .character-main{
+        flex-direction:column;
+    }
+
+    .character-img{
+        width:100%;
+        height:auto;
+        aspect-ratio:1/1;
+    }
+
+    .info h2{
+        font-size:38px;
+    }
+
+    .friend-wrap{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="logo-area">
+    <img src="logo.png" alt="로고">
+</div>
+
+<header>
+    <h1>캐릭터 사이트 제작하기</h1>
+    <p>웹디자인 과제 - 컴퓨터공학과 2024101402 김민정</p>
+</header>
+
+<section class="character-main">
+
+<div class="character-img">
+    <img src="rilakkuma.jpg" alt="리락쿠마 이미지">
+</div>
+
+<div class="info">
+
+<div class="tag">SAN-X 대표 캐릭터</div>
+
+<h2>리락쿠마</h2>
+<h3>느긋하고 여유로운 곰 캐릭터</h3>
+
+<table>
+<tr>
+<th>이름</th>
+<td>리락쿠마</td>
+</tr>
+
+<tr>
+<th>종류</th>
+<td>곰 캐릭터</td>
+</tr>
+
+<tr>
+<th>성격</th>
+<td>느긋함, 여유로움</td>
+</tr>
+
+<tr>
+<th>좋아하는 것</th>
+<td>낮잠, 간식, 휴식</td>
+</tr>
+</table>
+
+<p>
+리락쿠마는 일본 캐릭터 브랜드 SAN-X의 대표 캐릭터다.
+이름은 Relax와 Kuma(곰)의 합성어로,
+느긋하게 쉬는 것을 좋아하는 곰이라는 뜻을 담고 있다.
+</p>
+
+</div>
+</section>
+
+<section class="section">
+<h2>캐릭터 소개</h2>
+
+<p>
+리락쿠마는 늘 느긋하고 여유로운 모습이 특징인 캐릭터다.
+바쁘게 움직이기보다 쉬거나 맛있는 걸 먹으며
+조용하고 평화로운 하루를 보내는 장면이 자주 나온다.
+</p>
+
+<p>
+단순하고 귀여운 생김새, 따뜻한 색감, 편안한 분위기 덕분에
+오랫동안 많은 사람들에게 사랑받아 온 캐릭터다.
+</p>
+</section>
+
+<section class="section">
+<h2>주요 특징</h2>
+
+<div class="list-box">
+<ul>
+<li>느긋하고 여유로운 성격</li>
+<li>낮잠과 휴식을 좋아함</li>
+<li>귀엽고 단순한 외형</li>
+<li>편안한 분위기를 전달하는 캐릭터</li>
+<li>일상 속 힐링 이미지를 대표함</li>
+</ul>
+</div>
+</section>
+
 <section class="section">
 <h2>친구 캐릭터</h2>
 
 <div class="friend-wrap">
 
-<!-- 1. 코리락쿠마 -->
 <div class="friend">
 <img src="korilakkuma.jpg" alt="코리락쿠마 이미지">
 <h3>코리락쿠마</h3>
@@ -13,7 +328,6 @@
 </p>
 </div>
 
-<!-- 2. 키이로이토리 -->
 <div class="friend">
 <img src="kiiroitori.jpg" alt="키이로이토리 이미지">
 <h3>키이로이토리</h3>
@@ -23,7 +337,6 @@
 </p>
 </div>
 
-<!-- 3. 차이로이코구마 -->
 <div class="friend">
 <img src="chairoikoguma.jpg" alt="차이로이코구마 이미지">
 <h3>차이로이코구마</h3>
@@ -36,3 +349,35 @@
 
 </div>
 </section>
+
+<section class="section">
+<h2>선정 이유</h2>
+
+<div class="review-box">
+
+<p>
+리락쿠마를 주제로 선택한 이유는,
+단순히 귀여운 캐릭터라서가 아니라
+바쁜 일상 속에서 쉬어가도 괜찮다는 메시지를 자연스럽게 담고 있는 캐릭터라고 느꼈기 때문이다.
+</p>
+
+<p>
+페이지 전체 디자인도 그 분위기에 맞게
+베이지 계열 색상과 단정한 레이아웃으로 구성했다.
+</p>
+
+<div class="quote">
+리락쿠마는 편안함과 여유를 가장 잘 보여주는 캐릭터라고 생각한다.
+</div>
+
+</div>
+</section>
+
+<footer>
+<p>This site was created during HYCU web design class &copy;MJ</p>
+</footer>
+
+</div>
+
+</body>
+</html>
