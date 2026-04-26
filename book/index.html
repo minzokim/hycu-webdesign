@@ -3,64 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>센서티브 - 책 소개</title>
+<title>책 소개 - 센서티브</title>
 
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 
 <style>
-*{
-    box-sizing:border-box;
-}
-
 body{
     margin:0;
     font-family:"Pretendard", Arial, sans-serif;
-    background:#f7f7f7;
+    background:#f5f5f5;
     color:#222;
 }
 
-a{
-    color:inherit;
-}
-
 .wrapper{
-    width:1080px;
+    width:1000px;
     margin:0 auto;
 }
 
-.header{
-    padding:26px 0;
-    border-bottom:1px solid #ddd;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+header{
+    padding:24px 0;
+    border-bottom:1px solid #ccc;
 }
 
-.header h1{
+header h1{
     margin:0;
-    font-size:20px;
-    letter-spacing:-0.3px;
+    font-size:22px;
 }
 
-.header nav a{
-    margin-left:24px;
-    text-decoration:none;
-    color:#555;
+header p{
+    margin:8px 0 0;
+    color:#666;
     font-size:14px;
 }
 
-.main{
-    display:grid;
-    grid-template-columns:360px 1fr;
-    gap:60px;
-    padding:70px 0 50px;
+.book-main{
+    display:flex;
+    gap:45px;
+    padding:50px 0;
     border-bottom:1px solid #ddd;
 }
 
 .cover{
-    background:#fff;
-    padding:28px;
-    border:1px solid #e5e5e5;
+    width:310px;
+    background:white;
+    padding:20px;
+    border:1px solid #ddd;
 }
 
 .cover img{
@@ -68,164 +55,121 @@ a{
     display:block;
 }
 
-.book-info .category{
-    font-size:14px;
+.info{
+    flex:1;
+}
+
+.info .tag{
     color:#777;
-    margin-bottom:18px;
+    font-size:14px;
+    margin-bottom:12px;
 }
 
-.book-info h2{
+.info h2{
     margin:0;
-    font-size:54px;
-    letter-spacing:-2px;
-    font-weight:800;
+    font-size:46px;
 }
 
-.book-info .sub{
-    margin-top:14px;
-    font-size:21px;
+.info h3{
+    margin:12px 0 25px;
+    font-size:20px;
+    font-weight:400;
     color:#555;
-    line-height:1.5;
 }
 
-.meta{
-    margin-top:36px;
-    border-top:1px solid #ddd;
-    border-bottom:1px solid #ddd;
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:25px 0;
+    background:white;
 }
 
-.meta-row{
-    display:grid;
-    grid-template-columns:110px 1fr;
-    padding:14px 0;
-    border-bottom:1px solid #eee;
+th, td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
     font-size:15px;
 }
 
-.meta-row:last-child{
-    border-bottom:0;
+th{
+    width:120px;
+    background:#f0f0f0;
 }
 
-.meta-row strong{
-    color:#555;
+.info p,
+.section p{
+    line-height:1.8;
+    font-size:16px;
 }
 
-.intro-text{
-    margin-top:32px;
-    font-size:17px;
-    line-height:1.9;
-    color:#333;
-}
-
-.button-area{
-    margin-top:30px;
-}
-
-.button-area a{
+.btn{
     display:inline-block;
-    padding:13px 20px;
-    background:#222;
+    margin-top:12px;
+    padding:11px 18px;
+    background:#333;
     color:white;
     text-decoration:none;
-    font-size:15px;
+    font-size:14px;
 }
 
 .section{
-    padding:58px 0;
+    padding:42px 0;
     border-bottom:1px solid #ddd;
 }
 
-.section h3{
-    margin:0 0 24px;
-    font-size:28px;
-    letter-spacing:-1px;
+.section h2{
+    font-size:26px;
+    margin:0 0 20px;
 }
 
-.section p{
-    font-size:17px;
-    line-height:2;
-    color:#333;
-    margin:0 0 18px;
-}
-
-.two-column{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:44px;
-}
-
-.note-box{
+.list-box{
     background:white;
-    border:1px solid #e5e5e5;
-    padding:26px;
+    border:1px solid #ddd;
+    padding:24px;
 }
 
-.note-box h4{
-    margin:0 0 16px;
-    font-size:19px;
-}
-
-.note-box ul{
+ul{
     margin:0;
-    padding-left:20px;
+    padding-left:22px;
     line-height:2;
-    color:#333;
 }
 
-.review{
-    background:#fff;
-    border:1px solid #e5e5e5;
-    padding:34px;
-}
-
-.review p{
-    margin-bottom:20px;
+.review-box{
+    background:white;
+    border:1px solid #ddd;
+    padding:25px;
 }
 
 .quote{
-    margin:30px 0 0;
-    padding-left:20px;
-    border-left:4px solid #222;
-    color:#555;
-    font-size:16px;
-    line-height:1.8;
+    margin-top:20px;
+    padding:15px 20px;
+    background:#eee;
+    border-left:4px solid #333;
+    line-height:1.7;
+    color:#444;
 }
 
-.footer{
-    padding:30px 0 50px;
+footer{
+    padding:25px 0 40px;
     color:#777;
-    font-size:14px;
+    font-size:13px;
 }
 
-@media(max-width:900px){
+@media(max-width:800px){
     .wrapper{
         width:90%;
     }
 
-    .main{
-        grid-template-columns:1fr;
-        gap:30px;
+    .book-main{
+        flex-direction:column;
     }
 
-    .book-info h2{
-        font-size:42px;
+    .cover{
+        width:100%;
     }
 
-    .two-column{
-        grid-template-columns:1fr;
-    }
-
-    .header{
-        display:block;
-    }
-
-    .header nav{
-        margin-top:16px;
-    }
-
-    .header nav a{
-        margin-left:0;
-        margin-right:18px;
+    .info h2{
+        font-size:38px;
     }
 }
 </style>
@@ -235,61 +179,52 @@ a{
 
 <div class="wrapper">
 
-<header class="header">
-    <h1>Book Review Archive</h1>
-    <nav>
-        <a href="../">Home</a>
-        <a href="#intro">소개</a>
-        <a href="#review">감상</a>
-    </nav>
+<header>
+    <h1>HTML 활용 책 소개하기</h1>
+    <p>웹디자인 5차시 과제 - 책 소개 페이지</p>
 </header>
 
-<main class="main">
+<section class="book-main">
 
     <div class="cover">
         <img src="sensitive.jpg" alt="센서티브 책 표지">
     </div>
 
-    <div class="book-info">
-        <div class="category">심리 · 자기이해 · 에세이</div>
+    <div class="info">
+        <div class="tag">심리 · 자기이해 · 에세이</div>
 
         <h2>센서티브</h2>
+        <h3>남들보다 민감한 사람을 위한 섬세한 심리학</h3>
 
-        <div class="sub">
-            남들보다 민감한 사람을 위한 섬세한 심리학
-        </div>
+        <table>
+            <tr>
+                <th>저자</th>
+                <td>일자 샌드</td>
+            </tr>
+            <tr>
+                <th>분야</th>
+                <td>심리 / 자기이해</td>
+            </tr>
+            <tr>
+                <th>추천 대상</th>
+                <td>감정 소모가 크거나 쉽게 지친다고 느끼는 사람</td>
+            </tr>
+        </table>
 
-        <div class="meta">
-            <div class="meta-row">
-                <strong>저자</strong>
-                <span>일자 샌드</span>
-            </div>
-            <div class="meta-row">
-                <strong>분야</strong>
-                <span>심리 / 자기이해</span>
-            </div>
-            <div class="meta-row">
-                <strong>추천 대상</strong>
-                <span>감정 소모가 크거나 쉽게 지친다고 느끼는 사람</span>
-            </div>
-        </div>
-
-        <p class="intro-text">
+        <p>
             『센서티브』는 예민함을 고쳐야 할 단점으로 보지 않고,
             사람이 자극을 받아들이는 방식의 차이로 설명하는 책이다.
             일상에서 쉽게 지치거나 작은 말에도 오래 영향을 받는 사람에게
             자신의 성향을 조금 더 객관적으로 바라볼 수 있게 해준다.
         </p>
 
-        <div class="button-area">
-            <a href="https://www.aladin.co.kr" target="_blank">온라인 서점 보기</a>
-        </div>
+        <a class="btn" href="https://www.aladin.co.kr" target="_blank">온라인 서점 보기</a>
     </div>
 
-</main>
+</section>
 
-<section class="section" id="intro">
-    <h3>책 소개</h3>
+<section class="section">
+    <h2>책 소개</h2>
     <p>
         이 책은 남들보다 민감한 사람들이 왜 쉽게 피로를 느끼는지,
         관계 속에서 왜 많은 에너지를 사용하는지 설명한다.
@@ -299,39 +234,26 @@ a{
     <p>
         그래서 책의 전체적인 분위기는 강한 자기계발서라기보다,
         자신의 성향을 이해하고 조절하는 방법을 차분히 정리한 심리 안내서에 가깝다.
-        독자는 책을 읽으며 자신이 예민해서 문제가 있는 것이 아니라,
-        자신에게 맞는 방식으로 생활을 조정할 필요가 있다는 점을 생각하게 된다.
     </p>
 </section>
 
 <section class="section">
-    <div class="two-column">
-        <div class="note-box">
-            <h4>주요 내용</h4>
-            <ul>
-                <li>민감한 사람의 특징</li>
-                <li>자극을 많이 받는 사람의 피로감</li>
-                <li>관계 속에서 에너지를 지키는 방법</li>
-                <li>자신에게 맞는 생활 방식 찾기</li>
-                <li>민감함을 부정하지 않고 받아들이기</li>
-            </ul>
-        </div>
-
-        <div class="note-box">
-            <h4>이 책을 고른 이유</h4>
-            <p>
-                평소 작은 일에도 쉽게 지치거나 감정 소모가 크다고 느끼는 경우가 있다.
-                이 책은 그런 경험을 단순히 의지나 성격 문제로 보지 않고,
-                민감한 기질이라는 관점에서 설명한다는 점이 흥미로웠다.
-            </p>
-        </div>
+    <h2>주요 내용</h2>
+    <div class="list-box">
+        <ul>
+            <li>민감한 사람의 특징</li>
+            <li>자극을 많이 받는 사람의 피로감</li>
+            <li>관계 속에서 에너지를 지키는 방법</li>
+            <li>자신에게 맞는 생활 방식 찾기</li>
+            <li>민감함을 부정하지 않고 받아들이기</li>
+        </ul>
     </div>
 </section>
 
-<section class="section" id="review">
-    <h3>읽고 느낀 점</h3>
+<section class="section">
+    <h2>읽고 느낀 점</h2>
 
-    <div class="review">
+    <div class="review-box">
         <p>
             이 책을 읽으며 가장 인상 깊었던 부분은 예민함을 부정적인 성격으로 단정하지 않는 태도였다.
             보통 예민하다는 말은 피곤하다거나 까다롭다는 의미로 쓰일 때가 많다.
@@ -352,8 +274,8 @@ a{
     </div>
 </section>
 
-<footer class="footer">
-    2026 HYCU Web Design Assignment · HTML Book Introduction Page
+<footer>
+    2026 웹디자인 과제 | HTML Book Introduction Page
 </footer>
 
 </div>
