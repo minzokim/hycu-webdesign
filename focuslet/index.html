@@ -7,36 +7,30 @@
 
   <style>
     :root {
-      --primary: #ff4343;
-      --primary-dark: #cf2f2f;
-      --cream: #fbf7f2;
-      --cream-deep: #f1e7df;
-      --surface: #ffffff;
-      --text: #1f1b18;
-      --muted: #77706b;
+      --red: #ff4444;
+      --red-dark: #d93636;
+      --cream: #fff8f1;
+      --cream-2: #f7eee6;
+      --card: #ffffff;
+      --text: #221f1c;
+      --sub: #756d67;
       --line: #eadbd2;
-      --soft-red: #ffe8e6;
-      --shadow: 0 24px 60px rgba(198, 64, 54, 0.16);
-      --radius-lg: 34px;
-      --radius-md: 22px;
-      --radius-sm: 999px;
+      --green: #65a96b;
+      --orange: #f3a84c;
+      --shadow: 0 24px 70px rgba(150, 75, 55, 0.14);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 12% 12%, rgba(255, 67, 67, 0.12), transparent 26%),
-        radial-gradient(circle at 88% 8%, rgba(255, 187, 174, 0.18), transparent 28%),
-        linear-gradient(180deg, #fffaf6 0%, var(--cream) 58%, #fff 100%);
+        radial-gradient(circle at top left, rgba(255, 68, 68, 0.12), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 150, 120, 0.16), transparent 34%),
+        var(--cream);
       color: var(--text);
       word-break: keep-all;
     }
@@ -46,28 +40,34 @@
       text-decoration: none;
     }
 
-    .page {
+    .wrap {
       width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
     }
 
-    header {
-      padding: 28px 0 12px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 248, 241, 0.78);
+      border-bottom: 1px solid rgba(234, 219, 210, 0.7);
     }
 
-    .nav {
+    .topbar-inner {
+      height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 900;
+      gap: 11px;
       font-size: 22px;
+      font-weight: 900;
       letter-spacing: -0.04em;
     }
 
@@ -75,101 +75,153 @@
       width: 42px;
       height: 42px;
       object-fit: contain;
-      border-radius: 12px;
     }
 
-    .nav-links {
+    .nav {
       display: flex;
       align-items: center;
       gap: 8px;
-      color: var(--muted);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--sub);
     }
 
-    .nav-links a {
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
+    .nav a {
+      padding: 10px 13px;
+      border-radius: 999px;
     }
 
-    .nav-links a:hover {
-      background: var(--soft-red);
-      color: var(--primary-dark);
+    .nav a:hover {
+      background: #ffe7e3;
+      color: var(--red-dark);
+    }
+
+    .nav .download-small {
+      background: var(--red);
+      color: white;
+      padding: 11px 17px;
+      box-shadow: 0 10px 24px rgba(255, 68, 68, 0.22);
     }
 
     .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 54px;
-      align-items: center;
-      padding: 64px 0 72px;
+      padding: 52px 0 46px;
     }
 
-    .hero::before {
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,245,240,0.9)),
+        radial-gradient(circle at 12% 16%, rgba(255,68,68,0.16), transparent 32%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: center;
+      padding: 58px;
+      min-height: 610px;
+    }
+
+    .hero-card::before {
       content: "";
       position: absolute;
-      left: -80px;
-      top: 80px;
-      width: 160px;
+      width: 310px;
+      height: 310px;
+      right: -130px;
+      top: -120px;
+      border-radius: 999px;
+      background: rgba(255, 68, 68, 0.10);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 360px;
       height: 160px;
-      background: rgba(255, 67, 67, 0.08);
+      left: -70px;
+      bottom: -80px;
+      background: rgba(255, 68, 68, 0.13);
       border-radius: 50%;
-      z-index: -1;
+      transform: rotate(9deg);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-mark {
+      width: 118px;
+      height: 118px;
+      display: grid;
+      place-items: center;
+      border-radius: 34px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(150, 75, 55, 0.11);
+      margin-bottom: 28px;
+    }
+
+    .logo-mark img {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      color: var(--red-dark);
+      background: #ffe7e3;
       padding: 9px 15px;
-      border-radius: var(--radius-sm);
-      background: var(--soft-red);
-      color: var(--primary-dark);
+      border-radius: 999px;
       font-size: 14px;
       font-weight: 900;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(46px, 7vw, 84px);
-      line-height: 0.96;
-      letter-spacing: -0.075em;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.08em;
     }
 
-    .hero-title span {
-      color: var(--primary);
+    h1 span {
+      color: var(--red);
     }
 
-    .hero-desc {
-      max-width: 580px;
+    .lead {
       margin: 26px 0 0;
+      max-width: 540px;
       color: #5f5752;
       font-size: 19px;
       line-height: 1.75;
       letter-spacing: -0.035em;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 34px;
+      margin-top: 32px;
     }
 
     .btn {
+      min-height: 58px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      min-height: 58px;
       padding: 0 24px;
       border-radius: 18px;
       font-size: 17px;
       font-weight: 900;
       letter-spacing: -0.035em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .btn:hover {
@@ -177,108 +229,125 @@
     }
 
     .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 18px 34px rgba(255, 67, 67, 0.28);
+      background: var(--red);
+      color: white;
+      box-shadow: 0 18px 34px rgba(255, 68, 68, 0.26);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
-      box-shadow: 0 22px 42px rgba(255, 67, 67, 0.32);
+      background: var(--red-dark);
     }
 
-    .btn-secondary {
-      background: #fff;
-      color: var(--primary-dark);
+    .btn-ghost {
+      background: white;
+      color: var(--red-dark);
       border: 1px solid var(--line);
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 30px;
-    }
-
-    .meta-chip {
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .phone-wrap {
+    .phone-area {
       position: relative;
-      display: flex;
-      justify-content: center;
+      z-index: 1;
+      display: grid;
+      place-items: center;
     }
 
-    .phone-glow {
+    .phone-bg {
       position: absolute;
-      inset: 10% 0 auto 0;
-      margin: auto;
-      width: 76%;
-      height: 58%;
-      background: rgba(255, 67, 67, 0.18);
-      filter: blur(54px);
+      width: 420px;
+      height: 420px;
       border-radius: 999px;
-      z-index: -1;
+      background: rgba(255, 68, 68, 0.11);
+      filter: blur(12px);
     }
 
-    .phone-card {
-      width: min(360px, 88vw);
-      padding: 14px;
+    .phone {
+      position: relative;
+      width: min(340px, 78vw);
+      padding: 13px;
       border-radius: 42px;
-      background: rgba(255, 255, 255, 0.74);
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid rgba(234, 219, 210, 0.9);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
+      box-shadow: 0 28px 70px rgba(70, 40, 25, 0.18);
     }
 
-    .phone-card img {
-      display: block;
+    .phone img {
       width: 100%;
+      display: block;
       border-radius: 30px;
       border: 1px solid rgba(234, 219, 210, 0.8);
     }
 
-    .logo-float {
+    .bubble {
       position: absolute;
-      right: 4%;
-      top: 2%;
-      width: 82px;
-      height: 82px;
-      padding: 12px;
-      border-radius: 26px;
-      background: rgba(255, 255, 255, 0.85);
+      z-index: 2;
+      background: white;
       border: 1px solid var(--line);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.08);
-      transform: rotate(7deg);
+      border-radius: 999px;
+      padding: 13px 17px;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      box-shadow: 0 16px 32px rgba(70, 40, 25, 0.10);
     }
 
-    .logo-float img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .bubble.one {
+      left: 18px;
+      top: 110px;
+    }
+
+    .bubble.two {
+      right: 16px;
+      bottom: 118px;
+    }
+
+    .quick {
+      padding: 18px 0 64px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .quick-card {
+      min-height: 145px;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 40px rgba(70, 40, 25, 0.05);
+    }
+
+    .quick-card strong {
+      display: block;
+      font-size: 30px;
+      letter-spacing: -0.06em;
+      margin-bottom: 8px;
+    }
+
+    .quick-card p {
+      margin: 0;
+      color: var(--sub);
+      font-size: 14px;
+      line-height: 1.55;
+      letter-spacing: -0.025em;
     }
 
     section {
-      padding: 78px 0;
+      padding: 72px 0;
     }
 
-    .section-head {
+    .section-title {
       display: flex;
-      align-items: end;
       justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 30px;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 28px;
     }
 
-    .section-label {
-      color: var(--primary);
+    .label {
+      color: var(--red);
       font-size: 14px;
       font-weight: 950;
       letter-spacing: 0.08em;
@@ -288,357 +357,332 @@
 
     h2 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.12;
-      letter-spacing: -0.06em;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.065em;
     }
 
-    .section-desc {
-      max-width: 480px;
+    .section-title p {
+      max-width: 460px;
       margin: 0;
-      color: var(--muted);
+      color: var(--sub);
       font-size: 16px;
       line-height: 1.7;
       letter-spacing: -0.025em;
     }
 
-    .features {
+    .feature-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
 
-    .feature-card {
-      min-height: 240px;
-      padding: 28px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid var(--line);
-      box-shadow: 0 16px 40px rgba(50, 30, 20, 0.05);
+    .feature-main {
+      padding: 38px;
+      border-radius: 36px;
+      background: #2a201d;
+      color: white;
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .feature-icon {
-      width: 54px;
-      height: 54px;
+    .feature-main::after {
+      content: "25:00";
+      position: absolute;
+      right: -20px;
+      bottom: -42px;
+      font-size: 118px;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      color: rgba(255,255,255,0.06);
+    }
+
+    .feature-main h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 18px;
+      font-size: 35px;
+      line-height: 1.16;
+      letter-spacing: -0.055em;
+    }
+
+    .feature-main p {
+      position: relative;
+      z-index: 1;
+      color: rgba(255,255,255,0.76);
+      font-size: 17px;
+      line-height: 1.8;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-item {
+      padding: 25px;
+      border-radius: 28px;
+      background: white;
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
       display: grid;
       place-items: center;
-      border-radius: 18px;
-      background: var(--soft-red);
-      font-size: 25px;
-      margin-bottom: 22px;
+      border-radius: 20px;
+      background: #ffe7e3;
+      font-size: 26px;
     }
 
-    .feature-card h3 {
-      margin: 0 0 12px;
+    .feature-item h3 {
+      margin: 0 0 8px;
       font-size: 22px;
       letter-spacing: -0.045em;
     }
 
-    .feature-card p {
+    .feature-item p {
       margin: 0;
-      color: var(--muted);
+      color: var(--sub);
       font-size: 15px;
-      line-height: 1.75;
+      line-height: 1.7;
       letter-spacing: -0.025em;
     }
 
-    .intro-panel {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-      align-items: stretch;
+    .preview {
+      padding-top: 42px;
     }
 
-    .app-logo-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .preview-box {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 28px;
       align-items: center;
-      min-height: 380px;
-      padding: 38px;
-      border-radius: var(--radius-lg);
-      background:
-        radial-gradient(circle at 50% 46%, rgba(255, 67, 67, 0.16), transparent 38%),
-        #fff;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-
-    .app-logo-box img {
-      width: 210px;
-      max-width: 70%;
-      object-fit: contain;
-      margin-bottom: 24px;
-    }
-
-    .app-logo-box strong {
-      font-size: 30px;
-      letter-spacing: -0.06em;
-    }
-
-    .intro-text {
-      padding: 38px;
-      border-radius: var(--radius-lg);
-      background: #2a1e1a;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .intro-text::after {
-      content: "25:00";
-      position: absolute;
-      right: -16px;
-      bottom: -32px;
-      color: rgba(255, 255, 255, 0.06);
-      font-size: 112px;
-      font-weight: 950;
-      letter-spacing: -0.08em;
-    }
-
-    .intro-text h3 {
-      margin: 0 0 18px;
-      font-size: 34px;
-      line-height: 1.18;
-      letter-spacing: -0.055em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .intro-text p {
-      margin: 0 0 18px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 17px;
-      line-height: 1.8;
-      letter-spacing: -0.028em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 26px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step {
-      padding: 16px 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.86);
-      font-size: 14px;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .screenshot-section {
-      padding-top: 64px;
-    }
-
-    .screenshot-showcase {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
+      border-radius: 42px;
       padding: 36px;
-      border-radius: 44px;
-      background: linear-gradient(135deg, #fff 0%, #fff6f3 100%);
+      background:
+        linear-gradient(135deg, #fff 0%, #fff5f1 100%);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
 
-    .screenshot-copy h2 {
+    .preview-image {
+      display: grid;
+      place-items: center;
+    }
+
+    .preview-image img {
+      width: min(315px, 100%);
+      border-radius: 34px;
+      box-shadow: 0 22px 60px rgba(70, 40, 25, 0.16);
+      border: 1px solid var(--line);
+    }
+
+    .preview-copy h2 {
       margin-bottom: 18px;
     }
 
-    .screenshot-copy p {
-      margin: 0;
-      color: var(--muted);
+    .preview-copy p {
+      color: var(--sub);
       font-size: 17px;
       line-height: 1.8;
       letter-spacing: -0.03em;
+      margin: 0;
     }
 
-    .screenshot-list {
+    .check-list {
       display: grid;
-      gap: 12px;
-      margin-top: 26px;
+      gap: 13px;
+      margin-top: 25px;
     }
 
-    .screenshot-list div {
+    .check-list div {
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: #554b46;
+      gap: 11px;
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: -0.025em;
+      color: #4f4742;
     }
 
     .check {
-      width: 24px;
-      height: 24px;
-      display: inline-grid;
+      width: 25px;
+      height: 25px;
+      display: grid;
       place-items: center;
-      border-radius: 50%;
-      background: var(--soft-red);
-      color: var(--primary);
-      font-size: 14px;
+      border-radius: 999px;
+      background: #ffe7e3;
+      color: var(--red);
+      font-weight: 950;
       flex: 0 0 auto;
     }
 
-    .screenshot-img {
-      display: flex;
-      justify-content: center;
-    }
-
-    .screenshot-img img {
-      width: min(330px, 100%);
-      border-radius: 34px;
-      box-shadow: 0 24px 60px rgba(30, 20, 10, 0.16);
-      border: 1px solid var(--line);
-    }
-
     .download {
+      padding: 78px 0 70px;
+    }
+
+    .download-card {
+      position: relative;
+      overflow: hidden;
       text-align: center;
-      padding: 72px 36px;
-      border-radius: 46px;
+      padding: 64px 26px;
+      border-radius: 44px;
       background:
-        radial-gradient(circle at 16% 20%, rgba(255, 255, 255, 0.26), transparent 28%),
-        linear-gradient(135deg, #ff5550 0%, #f93e3e 60%, #e93535 100%);
-      color: #fff;
-      box-shadow: 0 26px 70px rgba(255, 67, 67, 0.26);
-      margin-bottom: 78px;
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.22), transparent 28%),
+        linear-gradient(135deg, #ff5750, #f43f3f 62%, #db3030);
+      color: white;
+      box-shadow: 0 26px 70px rgba(255, 68, 68, 0.26);
     }
 
-    .download img {
-      width: 96px;
-      height: 96px;
+    .download-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.13);
+      left: -90px;
+      top: -100px;
+    }
+
+    .download-card img {
+      width: 92px;
+      height: 92px;
       object-fit: contain;
-      margin-bottom: 22px;
-      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+      margin-bottom: 20px;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.12));
     }
 
-    .download h2 {
-      color: #fff;
+    .download-card h2 {
+      color: white;
       margin-bottom: 14px;
     }
 
-    .download p {
+    .download-card p {
       max-width: 620px;
       margin: 0 auto 28px;
-      color: rgba(255, 255, 255, 0.86);
+      color: rgba(255,255,255,0.85);
       font-size: 17px;
       line-height: 1.75;
       letter-spacing: -0.025em;
     }
 
-    .download .btn {
-      background: #fff;
-      color: var(--primary-dark);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.12);
+    .download-card .btn {
+      background: white;
+      color: var(--red-dark);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.12);
     }
 
     footer {
-      padding: 54px 0 66px;
       border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.44);
+      padding: 54px 0 64px;
+      background: rgba(255,255,255,0.42);
     }
 
-    .policy {
+    .policy-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
 
-    .policy-card {
+    .policy {
       padding: 24px;
-      border-radius: 24px;
-      background: #fff;
+      border-radius: 26px;
+      background: white;
       border: 1px solid var(--line);
     }
 
-    .policy-card h3 {
+    .policy h3 {
       margin: 0 0 12px;
       font-size: 18px;
       letter-spacing: -0.035em;
     }
 
-    .policy-card p {
+    .policy p {
       margin: 0;
-      color: var(--muted);
+      color: var(--sub);
       font-size: 14px;
       line-height: 1.75;
       letter-spacing: -0.02em;
     }
 
-    .copyright {
-      margin-top: 26px;
-      color: var(--muted);
-      font-size: 13px;
+    .copy {
       text-align: center;
+      color: var(--sub);
+      font-size: 13px;
+      margin-top: 26px;
     }
 
-    @media (max-width: 920px) {
-      .hero,
-      .intro-panel,
-      .screenshot-showcase,
-      .policy {
+    @media (max-width: 950px) {
+      .hero-card,
+      .feature-layout,
+      .preview-box,
+      .policy-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        gap: 36px;
-        padding-top: 44px;
+      .hero-card {
+        padding: 40px 26px;
       }
 
-      .section-head {
-        display: block;
+      .phone-area {
+        order: -1;
       }
 
-      .section-desc {
-        margin-top: 14px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .steps {
+      .quick-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .logo-float {
-        right: 8%;
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 14px;
       }
     }
 
-    @media (max-width: 560px) {
-      .page {
+    @media (max-width: 600px) {
+      .wrap {
         width: min(100% - 24px, 1120px);
       }
 
       .nav {
-        align-items: flex-start;
-      }
-
-      .nav-links {
         display: none;
       }
 
-      header {
-        padding-top: 20px;
+      .topbar-inner {
+        height: 66px;
       }
 
       .hero {
-        padding-bottom: 48px;
+        padding-top: 28px;
       }
 
-      .hero-desc {
+      .hero-card {
+        border-radius: 30px;
+        min-height: auto;
+      }
+
+      .logo-mark {
+        width: 92px;
+        height: 92px;
+      }
+
+      .logo-mark img {
+        width: 70px;
+        height: 70px;
+      }
+
+      .lead {
         font-size: 16px;
       }
 
@@ -646,203 +690,223 @@
         width: 100%;
       }
 
-      section {
-        padding: 54px 0;
-      }
-
-      .feature-card,
-      .intro-text,
-      .app-logo-box,
-      .screenshot-showcase {
-        padding: 24px;
-        border-radius: 28px;
-      }
-
-      .download {
-        padding: 48px 22px;
-        border-radius: 30px;
-      }
-
-      .steps {
+      .quick-grid {
         grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .feature-main,
+      .feature-item,
+      .preview-box,
+      .download-card {
+        border-radius: 28px;
+        padding: 25px;
+      }
+
+      .feature-item {
+        grid-template-columns: 1fr;
+      }
+
+      .bubble {
+        display: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="page">
-    <nav class="nav">
-      <a class="brand" href="#">
-        <img src="./app_icon.png" alt="Focuslet 앱 로고" />
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#" class="brand">
+        <img src="./app_icon.png" alt="Focuslet 로고" />
         <span>Focuslet</span>
       </a>
 
-      <div class="nav-links">
-        <a href="#about">소개</a>
+      <nav class="nav">
         <a href="#features">기능</a>
-        <a href="#screenshot">스크린샷</a>
-        <a href="#download">다운로드</a>
-      </div>
-    </nav>
+        <a href="#preview">화면</a>
+        <a href="#privacy">개인정보</a>
+        <a
+          class="download-small"
+          href="https://drive.google.com/file/d/1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          APK 다운로드
+        </a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero page">
-      <div>
-        <div class="eyebrow">🍅 Pomodoro Timer App</div>
+    <section class="hero wrap">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <div class="logo-mark">
+            <img src="./app_icon.png" alt="토마토 앱 로고" />
+          </div>
 
-        <h1 class="hero-title">
-          집중과 휴식을<br />
-          <span>가볍게 반복하는</span><br />
-          타이머
-        </h1>
+          <div class="eyebrow">🍅 Pomodoro Focus Timer</div>
 
-        <p class="hero-desc">
-          Focuslet은 25분 집중과 5분 휴식을 반복하며 공부와 작업 루틴을 만들 수 있도록 돕는 뽀모도로 타이머 앱입니다.
-          복잡한 설정보다 바로 시작할 수 있는 흐름에 집중했습니다.
-        </p>
+          <h1>
+            하루의 집중을<br />
+            <span>작은 루틴</span>으로
+          </h1>
 
-        <div class="hero-actions">
-          <a
-            class="btn btn-primary"
-            href="https://drive.google.com/file/d/1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ▶ APK 다운로드
-          </a>
-
-          <a class="btn btn-secondary" href="#screenshot">
-            화면 미리보기
-          </a>
-        </div>
-
-        <div class="hero-meta">
-          <span class="meta-chip">25분 집중</span>
-          <span class="meta-chip">5분 휴식</span>
-          <span class="meta-chip">4회 반복</span>
-          <span class="meta-chip">하루 회고</span>
-        </div>
-      </div>
-
-      <div class="phone-wrap">
-        <div class="phone-glow"></div>
-
-        <div class="logo-float">
-          <img src="./app_icon.png" alt="토마토 로고" />
-        </div>
-
-        <div class="phone-card">
-          <img src="./screen.jpg" alt="Focuslet 앱 메인 화면 스크린샷" />
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="page">
-      <div class="intro-panel">
-        <div class="app-logo-box">
-          <img src="./app_icon.png" alt="Focuslet 앱 로고" />
-          <strong>Focuslet</strong>
-        </div>
-
-        <div class="intro-text">
-          <h3>작게 시작해서 오래 이어가는 집중 루틴</h3>
-
-          <p>
-            Focuslet은 사용자가 집중 시간과 휴식 시간을 명확히 나누고 자연스럽게 다음 단계로 넘어갈 수 있도록 설계된 생산성 앱입니다.
-            화면 중앙의 큰 타이머와 단순한 조작 버튼으로 현재 해야 할 행동을 바로 확인할 수 있습니다.
+          <p class="lead">
+            Focuslet은 25분 집중과 5분 휴식을 반복하며 공부와 작업의 리듬을 만들어주는 뽀모도로 타이머 앱입니다.
+            복잡한 기능보다 바로 시작하는 경험에 집중했습니다.
           </p>
 
-          <p>
-            태그 입력과 하루 회고는 선택 기능으로 제공되어 공부나 과제 목적을 가볍게 기록하고 하루의 집중 경험을 짧게 돌아볼 수 있습니다.
-          </p>
+          <div class="hero-buttons">
+            <a
+              class="btn btn-primary"
+              href="https://drive.google.com/file/d/1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ▶ APK 다운로드
+            </a>
 
-          <div class="steps">
-            <div class="step">앱 실행</div>
-            <div class="step">태그 선택</div>
-            <div class="step">25분 집중</div>
-            <div class="step">5분 휴식</div>
+            <a class="btn btn-ghost" href="#preview">
+              앱 화면 보기
+            </a>
+          </div>
+        </div>
+
+        <div class="phone-area">
+          <div class="phone-bg"></div>
+          <div class="bubble one">25분 집중</div>
+          <div class="bubble two">5분 휴식</div>
+
+          <div class="phone">
+            <img src="./screen.jpg" alt="Focuslet 앱 스크린샷" />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="features" class="page">
-      <div class="section-head">
+    <section class="quick wrap">
+      <div class="quick-grid">
+        <div class="quick-card">
+          <strong>25:00</strong>
+          <p>기본 집중 시간을 큰 타이머로 명확하게 표시합니다.</p>
+        </div>
+
+        <div class="quick-card">
+          <strong>05:00</strong>
+          <p>집중 후 짧은 휴식을 안내해 흐름을 이어갑니다.</p>
+        </div>
+
+        <div class="quick-card">
+          <strong>4회</strong>
+          <p>집중 사이클을 4회 반복한 뒤 긴 휴식으로 전환합니다.</p>
+        </div>
+
+        <div class="quick-card">
+          <strong>회고</strong>
+          <p>하루의 집중 경험을 짧게 정리할 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="wrap">
+      <div class="section-title">
         <div>
-          <div class="section-label">Main Features</div>
-          <h2>필요한 기능만 담은<br />뽀모도로 MVP</h2>
+          <div class="label">Why Focuslet</div>
+          <h2>필요한 것만 남긴<br />가벼운 집중 도구</h2>
         </div>
 
-        <p class="section-desc">
-          Focuslet은 집중 시작부터 휴식 전환까지의 핵심 흐름을 방해하지 않도록 단순한 구조로 구성했습니다.
+        <p>
+          Focuslet은 공부나 작업을 시작하기 전 복잡한 설정으로 시간을 쓰지 않도록
+          타이머와 휴식 전환에 집중한 구조로 설계했습니다.
         </p>
       </div>
 
-      <div class="features">
-        <article class="feature-card">
-          <div class="feature-icon">⏱️</div>
-          <h3>집중 타이머</h3>
+      <div class="feature-layout">
+        <div class="feature-main">
+          <h3>집중을 시작하고<br />정해진 시간에 쉬는 것</h3>
           <p>
-            기본 25분 집중 시간을 제공하고 남은 시간을 큰 숫자로 표시합니다.
-            시작 후에는 1초씩 시간이 줄어들며 현재 집중 상태를 쉽게 확인할 수 있습니다.
+            뽀모도로 앱의 핵심은 단순합니다.
+            지금 집중할 시간인지 쉬어야 할 시간인지 바로 알 수 있어야 합니다.
+            Focuslet은 큰 원형 타이머, 단계 표시, 시작 버튼을 중심으로 한 화면을 구성해
+            사용자가 다음 행동을 쉽게 판단할 수 있도록 돕습니다.
           </p>
-        </article>
+        </div>
 
-        <article class="feature-card">
-          <div class="feature-icon">☕</div>
-          <h3>휴식 전환</h3>
-          <p>
-            집중이 끝나면 5분 짧은 휴식으로 전환됩니다.
-            4회 집중이 끝난 뒤에는 15분 긴 휴식으로 넘어가 기본 뽀모도로 흐름을 유지합니다.
-          </p>
-        </article>
+        <div class="feature-list">
+          <article class="feature-item">
+            <div class="icon">⏱️</div>
+            <div>
+              <h3>집중 타이머</h3>
+              <p>기본 25분 집중 타이머를 제공하고 남은 시간을 MM:SS 형식으로 보여줍니다.</p>
+            </div>
+          </article>
 
-        <article class="feature-card">
-          <div class="feature-icon">🏷️</div>
-          <h3>태그와 회고</h3>
-          <p>
-            공부, 과제, 독서처럼 세션 목적을 태그로 기록할 수 있습니다.
-            하루 끝에는 짧은 질문을 통해 집중 경험을 간단히 정리할 수 있습니다.
-          </p>
-        </article>
+          <article class="feature-item">
+            <div class="icon">☕</div>
+            <div>
+              <h3>휴식 타이머</h3>
+              <p>집중 시간이 끝나면 5분 휴식으로 전환하고 4회 후에는 긴 휴식을 안내합니다.</p>
+            </div>
+          </article>
+
+          <article class="feature-item">
+            <div class="icon">🏷️</div>
+            <div>
+              <h3>집중 태그</h3>
+              <p>공부, 과제, 독서처럼 현재 세션의 목적을 가볍게 기록할 수 있습니다.</p>
+            </div>
+          </article>
+
+          <article class="feature-item">
+            <div class="icon">📝</div>
+            <div>
+              <h3>하루 회고</h3>
+              <p>하루가 끝나면 짧은 질문을 통해 오늘의 집중 경험을 간단히 정리합니다.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="screenshot" class="screenshot-section page">
-      <div class="screenshot-showcase">
-        <div class="screenshot-copy">
-          <div class="section-label">Preview</div>
-          <h2>한 화면에서 바로 보이는 집중 상태</h2>
+    <section id="preview" class="preview wrap">
+      <div class="preview-box">
+        <div class="preview-image">
+          <img src="./screen.jpg" alt="Focuslet 앱 메인 화면" />
+        </div>
+
+        <div class="preview-copy">
+          <div class="label">App Preview</div>
+          <h2>한 화면에서 확인하는<br />오늘의 집중 상태</h2>
 
           <p>
-            메인 화면은 현재 단계, 남은 시간, 오늘 진행 횟수, 태그, 시작 버튼을 중심으로 구성되어 있습니다.
-            따뜻한 배경과 토마토 포인트 컬러로 부담 없이 집중을 시작할 수 있습니다.
+            메인 화면에서는 현재 단계, 오늘 진행 횟수, 남은 시간, 집중 태그, 시작 버튼을 한 번에 확인할 수 있습니다.
+            따뜻한 크림 배경과 토마토 포인트 컬러를 사용해 부담 없이 집중을 시작할 수 있게 구성했습니다.
           </p>
 
-          <div class="screenshot-list">
-            <div><span class="check">✓</span> 중앙 원형 타이머로 남은 시간 확인</div>
-            <div><span class="check">✓</span> 집중, 짧은 휴식, 긴 휴식 상태 구분</div>
-            <div><span class="check">✓</span> 오늘 진행 횟수와 세션 태그 표시</div>
+          <div class="check-list">
+            <div><span class="check">✓</span> 현재 단계 표시</div>
+            <div><span class="check">✓</span> 큰 원형 타이머</div>
+            <div><span class="check">✓</span> 집중 태그 입력</div>
+            <div><span class="check">✓</span> 시작과 초기화 버튼</div>
           </div>
         </div>
-
-        <div class="screenshot-img">
-          <img src="./screen.jpg" alt="Focuslet 앱 스크린샷" />
-        </div>
       </div>
     </section>
 
-    <section id="download" class="page">
-      <div class="download">
+    <section class="download wrap">
+      <div class="download-card">
         <img src="./app_icon.png" alt="Focuslet 로고" />
 
         <h2>Focuslet APK 다운로드</h2>
 
         <p>
           아래 버튼을 누르면 Google Drive에 업로드된 APK 파일 페이지로 이동합니다.
-          Android 기기에서 설치하여 Focuslet 뽀모도로 타이머를 사용할 수 있습니다.
+          Android 기기에서 설치해 Focuslet 뽀모도로 타이머를 사용할 수 있습니다.
         </p>
 
         <a
@@ -857,10 +921,10 @@
     </section>
   </main>
 
-  <footer>
-    <div class="page">
-      <div class="policy">
-        <div class="policy-card">
+  <footer id="privacy">
+    <div class="wrap">
+      <div class="policy-grid">
+        <div class="policy">
           <h3>Privacy Policy</h3>
           <p>
             Focuslet does not require user login and does not collect personally identifiable information.
@@ -870,7 +934,7 @@
           </p>
         </div>
 
-        <div class="policy-card">
+        <div class="policy">
           <h3>개인정보 처리방침</h3>
           <p>
             Focuslet은 사용자 로그인을 요구하지 않으며 개인을 식별할 수 있는 정보를 수집하지 않습니다.
@@ -880,7 +944,7 @@
         </div>
       </div>
 
-      <div class="copyright">
+      <div class="copy">
         © 2026 Focuslet. Pomodoro Timer App.
       </div>
     </div>
