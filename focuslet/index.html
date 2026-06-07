@@ -118,7 +118,7 @@
       box-shadow: var(--shadow);
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
-      gap: 28px;
+      gap: 42px;
       align-items: center;
       padding: 58px;
       min-height: 610px;
@@ -145,6 +145,62 @@
       background: rgba(255, 68, 68, 0.13);
       border-radius: 50%;
       transform: rotate(9deg);
+    }
+
+    .phone-area {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .phone-bg {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: rgba(255, 68, 68, 0.11);
+      filter: blur(12px);
+    }
+
+    .phone {
+      position: relative;
+      width: min(340px, 78vw);
+      padding: 13px;
+      border-radius: 42px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(234, 219, 210, 0.9);
+      box-shadow: 0 28px 70px rgba(70, 40, 25, 0.18);
+    }
+
+    .phone img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      border: 1px solid rgba(234, 219, 210, 0.8);
+    }
+
+    .bubble {
+      position: absolute;
+      z-index: 2;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 13px 17px;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      box-shadow: 0 16px 32px rgba(70, 40, 25, 0.10);
+    }
+
+    .bubble.one {
+      left: 8px;
+      top: 110px;
+    }
+
+    .bubble.two {
+      right: 8px;
+      bottom: 118px;
     }
 
     .hero-copy {
@@ -242,62 +298,6 @@
       background: white;
       color: var(--red-dark);
       border: 1px solid var(--line);
-    }
-
-    .phone-area {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      place-items: center;
-    }
-
-    .phone-bg {
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      background: rgba(255, 68, 68, 0.11);
-      filter: blur(12px);
-    }
-
-    .phone {
-      position: relative;
-      width: min(340px, 78vw);
-      padding: 13px;
-      border-radius: 42px;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(234, 219, 210, 0.9);
-      box-shadow: 0 28px 70px rgba(70, 40, 25, 0.18);
-    }
-
-    .phone img {
-      width: 100%;
-      display: block;
-      border-radius: 30px;
-      border: 1px solid rgba(234, 219, 210, 0.8);
-    }
-
-    .bubble {
-      position: absolute;
-      z-index: 2;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 13px 17px;
-      font-size: 15px;
-      font-weight: 900;
-      color: var(--text);
-      box-shadow: 0 16px 32px rgba(70, 40, 25, 0.10);
-    }
-
-    .bubble.one {
-      left: 18px;
-      top: 110px;
-    }
-
-    .bubble.two {
-      right: 16px;
-      bottom: 118px;
     }
 
     .quick {
@@ -633,10 +633,6 @@
         padding: 40px 26px;
       }
 
-      .phone-area {
-        order: -1;
-      }
-
       .quick-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -727,7 +723,7 @@
 
       <nav class="nav">
         <a href="#features">기능</a>
-        <a href="#preview">화면</a>
+        <a href="#preview">스크린샷</a>
         <a href="#privacy">개인정보</a>
         <a
           class="download-small"
@@ -735,7 +731,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          APK 다운로드
+          다운로드
         </a>
       </nav>
     </div>
@@ -744,6 +740,16 @@
   <main>
     <section class="hero wrap">
       <div class="hero-card">
+        <div class="phone-area">
+          <div class="phone-bg"></div>
+          <div class="bubble one">25분 집중</div>
+          <div class="bubble two">5분 휴식</div>
+
+          <div class="phone">
+            <img src="./screen.jpg" alt="Focuslet 앱 스크린샷" />
+          </div>
+        </div>
+
         <div class="hero-copy">
           <div class="logo-mark">
             <img src="./app_icon.png" alt="토마토 앱 로고" />
@@ -774,16 +780,6 @@
             <a class="btn btn-ghost" href="#preview">
               앱 화면 보기
             </a>
-          </div>
-        </div>
-
-        <div class="phone-area">
-          <div class="phone-bg"></div>
-          <div class="bubble one">25분 집중</div>
-          <div class="bubble two">5분 휴식</div>
-
-          <div class="phone">
-            <img src="./screen.jpg" alt="Focuslet 앱 스크린샷" />
           </div>
         </div>
       </div>
