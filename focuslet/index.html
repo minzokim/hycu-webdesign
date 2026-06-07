@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Focuslet - 25분 집중과 5분 휴식으로 집중 루틴을 만드는 뽀모도로 타이머 앱" />
   <title>Focuslet - Pomodoro Timer App</title>
+
   <style>
     :root {
-      --primary: #ff4742;
-      --primary-dark: #c83731;
-      --primary-soft: #ffe5e3;
-      --rest: #4f7cac;
-      --review: #5e9e72;
-      --background: #fbf7f2;
+      --primary: #ff4343;
+      --primary-dark: #cf2f2f;
+      --cream: #fbf7f2;
+      --cream-deep: #f1e7df;
       --surface: #ffffff;
-      --surface-soft: #f3ebe5;
       --text: #1f1b18;
-      --muted: #746d67;
-      --outline: #dacbc3;
-      --shadow: 0 24px 70px rgba(115, 68, 54, 0.14);
-      --radius-xl: 34px;
-      --radius-lg: 26px;
-      --radius-md: 18px;
+      --muted: #77706b;
+      --line: #eadbd2;
+      --soft-red: #ffe8e6;
+      --shadow: 0 24px 60px rgba(198, 64, 54, 0.16);
+      --radius-lg: 34px;
+      --radius-md: 22px;
+      --radius-sm: 999px;
     }
 
     * {
@@ -34,14 +32,12 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Noto Sans KR", Arial, sans-serif;
-      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 12% 16%, rgba(255, 71, 66, 0.13), transparent 18rem),
-        radial-gradient(circle at 86% 8%, rgba(255, 229, 227, 0.9), transparent 20rem),
-        radial-gradient(circle at 82% 78%, rgba(79, 124, 172, 0.10), transparent 22rem),
-        var(--background);
-      line-height: 1.65;
+        radial-gradient(circle at 12% 12%, rgba(255, 67, 67, 0.12), transparent 26%),
+        radial-gradient(circle at 88% 8%, rgba(255, 187, 174, 0.18), transparent 28%),
+        linear-gradient(180deg, #fffaf6 0%, var(--cream) 58%, #fff 100%);
+      color: var(--text);
       word-break: keep-all;
     }
 
@@ -51,16 +47,19 @@
     }
 
     .page {
-      width: min(1120px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0 12px;
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 28px 0 16px;
+      gap: 18px;
     }
 
     .brand {
@@ -68,405 +67,561 @@
       align-items: center;
       gap: 12px;
       font-weight: 900;
-      letter-spacing: -0.04em;
       font-size: 22px;
+      letter-spacing: -0.04em;
     }
 
     .brand img {
       width: 42px;
       height: 42px;
       object-fit: contain;
-      filter: drop-shadow(0 8px 16px rgba(255, 71, 66, 0.18));
+      border-radius: 12px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 18px;
-      font-size: 14px;
+      gap: 8px;
       color: var(--muted);
+      font-size: 14px;
       font-weight: 700;
     }
 
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+    }
+
     .nav-links a:hover {
+      background: var(--soft-red);
       color: var(--primary-dark);
     }
 
     .hero {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.03fr) minmax(320px, 0.97fr);
-      align-items: center;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 54px;
-      padding: 52px 0 78px;
+      align-items: center;
+      padding: 64px 0 72px;
     }
 
-    .badge {
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: 80px;
+      width: 160px;
+      height: 160px;
+      background: rgba(255, 67, 67, 0.08);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       padding: 9px 15px;
-      border: 1px solid rgba(255, 71, 66, 0.16);
-      background: rgba(255, 229, 227, 0.72);
+      border-radius: var(--radius-sm);
+      background: var(--soft-red);
       color: var(--primary-dark);
-      border-radius: 999px;
       font-size: 14px;
-      font-weight: 800;
-      box-shadow: 0 10px 26px rgba(255, 71, 66, 0.10);
-    }
-
-    .badge img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
+      font-weight: 900;
+      margin-bottom: 22px;
     }
 
     h1 {
-      margin: 20px 0 18px;
-      font-size: clamp(48px, 8vw, 88px);
-      line-height: 0.98;
+      margin: 0;
+      font-size: clamp(46px, 7vw, 84px);
+      line-height: 0.96;
       letter-spacing: -0.075em;
     }
 
-    .hero-title-accent {
+    .hero-title span {
       color: var(--primary);
     }
 
-    .lead {
-      max-width: 620px;
-      margin: 0 0 28px;
-      color: #514a45;
-      font-size: clamp(18px, 2vw, 22px);
-      letter-spacing: -0.03em;
+    .hero-desc {
+      max-width: 580px;
+      margin: 26px 0 0;
+      color: #5f5752;
+      font-size: 19px;
+      line-height: 1.75;
+      letter-spacing: -0.035em;
     }
 
-    .cta-row {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 34px 0 18px;
+      margin-top: 34px;
     }
 
-    .button {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 56px;
+      gap: 9px;
+      min-height: 58px;
       padding: 0 24px;
       border-radius: 18px;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 900;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.035em;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    .button:hover {
+    .btn:hover {
       transform: translateY(-2px);
     }
 
-    .button-primary {
+    .btn-primary {
       background: var(--primary);
       color: #fff;
-      box-shadow: 0 18px 32px rgba(255, 71, 66, 0.27);
+      box-shadow: 0 18px 34px rgba(255, 67, 67, 0.28);
     }
 
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid var(--outline);
-      color: var(--text);
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 22px 42px rgba(255, 67, 67, 0.32);
     }
 
-    .note {
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 1px solid var(--line);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .meta-chip {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--line);
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 800;
     }
 
-    .hero-card {
+    .phone-wrap {
       position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 620px;
+      display: flex;
+      justify-content: center;
     }
 
-    .phone-frame {
-      width: min(390px, 100%);
-      padding: 12px;
+    .phone-glow {
+      position: absolute;
+      inset: 10% 0 auto 0;
+      margin: auto;
+      width: 76%;
+      height: 58%;
+      background: rgba(255, 67, 67, 0.18);
+      filter: blur(54px);
+      border-radius: 999px;
+      z-index: -1;
+    }
+
+    .phone-card {
+      width: min(360px, 88vw);
+      padding: 14px;
       border-radius: 42px;
       background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(218, 203, 195, 0.84);
+      border: 1px solid rgba(234, 219, 210, 0.9);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(14px);
     }
 
-    .phone-frame img {
+    .phone-card img {
       display: block;
       width: 100%;
-      border-radius: 32px;
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+      border-radius: 30px;
+      border: 1px solid rgba(234, 219, 210, 0.8);
     }
 
-    .floating-logo {
+    .logo-float {
       position: absolute;
-      left: 24px;
-      top: 46px;
-      width: 114px;
-      height: 114px;
-      display: grid;
-      place-items: center;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(255, 71, 66, 0.12);
-      box-shadow: 0 18px 48px rgba(255, 71, 66, 0.20);
-      transform: rotate(-7deg);
+      right: 4%;
+      top: 2%;
+      width: 82px;
+      height: 82px;
+      padding: 12px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.08);
+      transform: rotate(7deg);
     }
 
-    .floating-logo img {
-      width: 86px;
-      height: 86px;
+    .logo-float img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
-    .floating-chip {
-      position: absolute;
-      right: 0;
-      bottom: 96px;
-      padding: 14px 18px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(218, 203, 195, 0.82);
-      box-shadow: 0 18px 48px rgba(115, 68, 54, 0.14);
-      font-weight: 900;
-      color: var(--primary-dark);
+    section {
+      padding: 78px 0;
     }
 
-    .section {
-      padding: 66px 0;
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
     }
 
-    .section-title {
-      margin: 0 0 14px;
-      font-size: clamp(30px, 4vw, 46px);
+    .section-label {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
       line-height: 1.12;
       letter-spacing: -0.06em;
     }
 
-    .section-subtitle {
-      max-width: 760px;
-      margin: 0 0 34px;
+    .section-desc {
+      max-width: 480px;
+      margin: 0;
       color: var(--muted);
-      font-size: 17px;
-      letter-spacing: -0.02em;
+      font-size: 16px;
+      line-height: 1.7;
+      letter-spacing: -0.025em;
     }
 
-    .feature-grid {
+    .features {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .feature-card {
-      min-height: 216px;
-      padding: 26px;
+      min-height: 240px;
+      padding: 28px;
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(218, 203, 195, 0.72);
-      box-shadow: 0 18px 48px rgba(115, 68, 54, 0.08);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 40px rgba(50, 30, 20, 0.05);
     }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
+      width: 54px;
+      height: 54px;
       display: grid;
       place-items: center;
-      margin-bottom: 16px;
-      border-radius: 16px;
-      background: var(--primary-soft);
-      font-size: 22px;
+      border-radius: 18px;
+      background: var(--soft-red);
+      font-size: 25px;
+      margin-bottom: 22px;
     }
 
     .feature-card h3 {
-      margin: 0 0 9px;
-      font-size: 20px;
-      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -0.045em;
     }
 
     .feature-card p {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
+      line-height: 1.75;
+      letter-spacing: -0.025em;
     }
 
     .intro-panel {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
       align-items: stretch;
-      padding: 28px;
-      border-radius: var(--radius-xl);
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(218, 203, 195, 0.75);
-      box-shadow: var(--shadow);
     }
 
-    .intro-copy {
-      padding: 16px 8px 16px 16px;
-    }
-
-    .intro-copy p {
-      margin: 0 0 16px;
-      color: #514a45;
-    }
-
-    .step-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .step {
+    .app-logo-box {
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: var(--background);
-      border: 1px solid rgba(218, 203, 195, 0.65);
-      color: #423b36;
-      font-weight: 800;
-    }
-
-    .step span {
-      display: grid;
-      place-items: center;
-      flex: 0 0 30px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 13px;
-    }
-
-    .app-logo-card {
-      display: grid;
-      place-items: center;
-      min-height: 440px;
-      border-radius: 28px;
+      min-height: 380px;
+      padding: 38px;
+      border-radius: var(--radius-lg);
       background:
-        linear-gradient(145deg, rgba(255, 229, 227, 0.95), rgba(255, 255, 255, 0.92)),
-        var(--surface);
-      border: 1px solid rgba(255, 71, 66, 0.12);
+        radial-gradient(circle at 50% 46%, rgba(255, 67, 67, 0.16), transparent 38%),
+        #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .app-logo-box img {
+      width: 210px;
+      max-width: 70%;
+      object-fit: contain;
+      margin-bottom: 24px;
+    }
+
+    .app-logo-box strong {
+      font-size: 30px;
+      letter-spacing: -0.06em;
+    }
+
+    .intro-text {
+      padding: 38px;
+      border-radius: var(--radius-lg);
+      background: #2a1e1a;
+      color: #fff;
       overflow: hidden;
       position: relative;
     }
 
-    .app-logo-card::before,
-    .app-logo-card::after {
-      content: "";
+    .intro-text::after {
+      content: "25:00";
       position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(255, 71, 66, 0.08);
+      right: -16px;
+      bottom: -32px;
+      color: rgba(255, 255, 255, 0.06);
+      font-size: 112px;
+      font-weight: 950;
+      letter-spacing: -0.08em;
     }
 
-    .app-logo-card::before {
-      left: -92px;
-      top: -80px;
-    }
-
-    .app-logo-card::after {
-      right: -90px;
-      bottom: -100px;
-    }
-
-    .app-logo-card img {
+    .intro-text h3 {
+      margin: 0 0 18px;
+      font-size: 34px;
+      line-height: 1.18;
+      letter-spacing: -0.055em;
       position: relative;
       z-index: 1;
-      width: min(280px, 70%);
-      height: auto;
-      filter: drop-shadow(0 22px 34px rgba(79, 38, 22, 0.18));
     }
 
-    .download-panel {
+    .intro-text p {
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 17px;
+      line-height: 1.8;
+      letter-spacing: -0.028em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .steps {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: center;
-      padding: 34px;
-      border-radius: var(--radius-xl);
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 26px 70px rgba(255, 71, 66, 0.28);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+      position: relative;
+      z-index: 1;
     }
 
-    .download-panel h2 {
-      margin: 0 0 6px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.14;
-      letter-spacing: -0.06em;
+    .step {
+      padding: 16px 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
     }
 
-    .download-panel p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.84);
+    .screenshot-section {
+      padding-top: 64px;
     }
 
-    .download-panel .button {
-      background: #fff;
-      color: var(--primary-dark);
-      box-shadow: none;
-      white-space: nowrap;
-    }
-
-    .policy {
-      padding: 54px 0 46px;
-    }
-
-    .policy-card {
-      padding: 30px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(218, 203, 195, 0.74);
-    }
-
-    .policy-grid {
+    .screenshot-showcase {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 30px;
+      align-items: center;
+      padding: 36px;
+      border-radius: 44px;
+      background: linear-gradient(135deg, #fff 0%, #fff6f3 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
-    .policy h2 {
-      margin: 0 0 16px;
-      font-size: 26px;
-      letter-spacing: -0.05em;
+    .screenshot-copy h2 {
+      margin-bottom: 18px;
     }
 
-    .policy h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
+    .screenshot-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
       letter-spacing: -0.03em;
     }
 
-    .policy p,
-    .policy li {
-      color: var(--muted);
-      font-size: 14px;
+    .screenshot-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
     }
 
-    .policy ul {
-      margin: 0;
-      padding-left: 18px;
+    .screenshot-list div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #554b46;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft-red);
+      color: var(--primary);
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .screenshot-img {
+      display: flex;
+      justify-content: center;
+    }
+
+    .screenshot-img img {
+      width: min(330px, 100%);
+      border-radius: 34px;
+      box-shadow: 0 24px 60px rgba(30, 20, 10, 0.16);
+      border: 1px solid var(--line);
+    }
+
+    .download {
+      text-align: center;
+      padding: 72px 36px;
+      border-radius: 46px;
+      background:
+        radial-gradient(circle at 16% 20%, rgba(255, 255, 255, 0.26), transparent 28%),
+        linear-gradient(135deg, #ff5550 0%, #f93e3e 60%, #e93535 100%);
+      color: #fff;
+      box-shadow: 0 26px 70px rgba(255, 67, 67, 0.26);
+      margin-bottom: 78px;
+    }
+
+    .download img {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      margin-bottom: 22px;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+    }
+
+    .download h2 {
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .download p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 17px;
+      line-height: 1.75;
+      letter-spacing: -0.025em;
+    }
+
+    .download .btn {
+      background: #fff;
+      color: var(--primary-dark);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.12);
     }
 
     footer {
-      padding: 26px 0 46px;
+      padding: 54px 0 66px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.44);
+    }
+
+    .policy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .policy-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .policy-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.035em;
+    }
+
+    .policy-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+      letter-spacing: -0.02em;
+    }
+
+    .copyright {
+      margin-top: 26px;
       color: var(--muted);
       font-size: 13px;
       text-align: center;
     }
 
-    @media (max-width: 880px) {
+    @media (max-width: 920px) {
+      .hero,
+      .intro-panel,
+      .screenshot-showcase,
+      .policy {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 36px;
+        padding-top: 44px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-desc {
+        margin-top: 14px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .logo-float {
+        right: 8%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
       .nav {
         align-items: flex-start;
       }
@@ -475,201 +630,260 @@
         display: none;
       }
 
+      header {
+        padding-top: 20px;
+      }
+
       .hero {
-        grid-template-columns: 1fr;
-        gap: 34px;
-        padding-top: 34px;
+        padding-bottom: 48px;
       }
 
-      .hero-card {
-        min-height: auto;
+      .hero-desc {
+        font-size: 16px;
       }
 
-      .floating-logo,
-      .floating-chip {
-        display: none;
-      }
-
-      .feature-grid,
-      .intro-panel,
-      .policy-grid,
-      .download-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .download-panel .button {
+      .btn {
         width: 100%;
       }
-    }
 
-    @media (max-width: 560px) {
-      .page {
-        width: min(100% - 28px, 1120px);
+      section {
+        padding: 54px 0;
       }
 
-      .section {
-        padding: 42px 0;
+      .feature-card,
+      .intro-text,
+      .app-logo-box,
+      .screenshot-showcase {
+        padding: 24px;
+        border-radius: 28px;
       }
 
-      .intro-panel,
-      .download-panel,
-      .policy-card {
-        padding: 22px;
-        border-radius: 24px;
+      .download {
+        padding: 48px 22px;
+        border-radius: 30px;
       }
 
-      .button {
-        width: 100%;
+      .steps {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
+
 <body>
-  <header class="page nav" id="top">
-    <a class="brand" href="#top" aria-label="Focuslet Home">
-      <img src="app_icon.png" alt="Focuslet tomato logo" />
-      <span>Focuslet</span>
-    </a>
-    <nav class="nav-links" aria-label="페이지 이동">
-      <a href="#about">앱 소개</a>
-      <a href="#features">기능</a>
-      <a href="#screenshot">스크린샷</a>
-      <a href="#privacy">Privacy Policy</a>
+  <header class="page">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <img src="./app_icon.png" alt="Focuslet 앱 로고" />
+        <span>Focuslet</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">소개</a>
+        <a href="#features">기능</a>
+        <a href="#screenshot">스크린샷</a>
+        <a href="#download">다운로드</a>
+      </div>
     </nav>
   </header>
 
   <main>
-    <section class="page hero">
+    <section class="hero page">
       <div>
-        <div class="badge">
-          <img src="app_icon.png" alt="" />
-          Pomodoro Timer App
-        </div>
-        <h1>집중을 작게 나누고<br /><span class="hero-title-accent">습관으로 이어가기</span></h1>
-        <p class="lead">
-          Focuslet은 25분 집중과 5분 휴식을 반복하며 공부와 작업 흐름을 가볍게 잡아주는 뽀모도로 타이머 앱입니다.
+        <div class="eyebrow">🍅 Pomodoro Timer App</div>
+
+        <h1 class="hero-title">
+          집중과 휴식을<br />
+          <span>가볍게 반복하는</span><br />
+          타이머
+        </h1>
+
+        <p class="hero-desc">
+          Focuslet은 25분 집중과 5분 휴식을 반복하며 공부와 작업 루틴을 만들 수 있도록 돕는 뽀모도로 타이머 앱입니다.
+          복잡한 설정보다 바로 시작할 수 있는 흐름에 집중했습니다.
         </p>
-        <div class="cta-row">
-          <a class="button button-primary" href="https://drive.google.com/uc?export=download&id=1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm" target="_blank" rel="noopener noreferrer">🍅 APK 다운로드</a>
-          <a class="button button-secondary" href="#screenshot">화면 미리보기</a>
+
+        <div class="hero-actions">
+          <a
+            class="btn btn-primary"
+            href="https://drive.google.com/file/d/1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ APK 다운로드
+          </a>
+
+          <a class="btn btn-secondary" href="#screenshot">
+            화면 미리보기
+          </a>
         </div>
-        <p class="note">Android APK 파일은 Google Drive 링크를 통해 내려받을 수 있습니다.</p>
+
+        <div class="hero-meta">
+          <span class="meta-chip">25분 집중</span>
+          <span class="meta-chip">5분 휴식</span>
+          <span class="meta-chip">4회 반복</span>
+          <span class="meta-chip">하루 회고</span>
+        </div>
       </div>
 
-      <div class="hero-card" id="screenshot">
-        <div class="floating-logo" aria-hidden="true">
-          <img src="app_icon.png" alt="" />
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+
+        <div class="logo-float">
+          <img src="./app_icon.png" alt="토마토 로고" />
         </div>
-        <div class="phone-frame">
-          <img src="screen.jpg" alt="Focuslet 앱 메인 타이머 화면 스크린샷" />
+
+        <div class="phone-card">
+          <img src="./screen.jpg" alt="Focuslet 앱 메인 화면 스크린샷" />
         </div>
-        <div class="floating-chip" aria-hidden="true">25:00 Focus</div>
       </div>
     </section>
 
-    <section class="page section" id="about">
+    <section id="about" class="page">
       <div class="intro-panel">
-        <div class="intro-copy">
-          <h2 class="section-title">Focuslet 소개</h2>
+        <div class="app-logo-box">
+          <img src="./app_icon.png" alt="Focuslet 앱 로고" />
+          <strong>Focuslet</strong>
+        </div>
+
+        <div class="intro-text">
+          <h3>작게 시작해서 오래 이어가는 집중 루틴</h3>
+
           <p>
-            Focuslet은 복잡한 설정 없이 바로 집중을 시작할 수 있도록 설계된 생산성 앱입니다. 화면 중앙의 큰 타이머와 명확한 상태 표시로 지금 집중 중인지 휴식 중인지 한눈에 확인할 수 있습니다.
+            Focuslet은 사용자가 집중 시간과 휴식 시간을 명확히 나누고 자연스럽게 다음 단계로 넘어갈 수 있도록 설계된 생산성 앱입니다.
+            화면 중앙의 큰 타이머와 단순한 조작 버튼으로 현재 해야 할 행동을 바로 확인할 수 있습니다.
           </p>
+
           <p>
-            기본 흐름은 25분 집중 후 5분 휴식입니다. 집중을 4회 반복하면 15분 긴 휴식으로 전환되어 무리하지 않고 루틴을 이어갈 수 있습니다.
+            태그 입력과 하루 회고는 선택 기능으로 제공되어 공부나 과제 목적을 가볍게 기록하고 하루의 집중 경험을 짧게 돌아볼 수 있습니다.
           </p>
-          <div class="step-list" aria-label="앱 사용 흐름">
-            <div class="step"><span>1</span> 태그를 선택하거나 바로 시작</div>
-            <div class="step"><span>2</span> 25분 집중 타이머 진행</div>
-            <div class="step"><span>3</span> 5분 휴식 후 다음 집중 안내</div>
-            <div class="step"><span>4</span> 하루 끝에 짧은 회고 기록</div>
+
+          <div class="steps">
+            <div class="step">앱 실행</div>
+            <div class="step">태그 선택</div>
+            <div class="step">25분 집중</div>
+            <div class="step">5분 휴식</div>
           </div>
         </div>
-        <div class="app-logo-card">
-          <img src="app_icon.png" alt="Focuslet 앱 로고" />
-        </div>
       </div>
     </section>
 
-    <section class="page section" id="features">
-      <h2 class="section-title">주요 기능</h2>
-      <p class="section-subtitle">
-        뽀모도로 기법을 실천하는 데 필요한 핵심 기능만 담아 집중 흐름을 방해하지 않도록 구성했습니다.
-      </p>
-      <div class="feature-grid">
+    <section id="features" class="page">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Main Features</div>
+          <h2>필요한 기능만 담은<br />뽀모도로 MVP</h2>
+        </div>
+
+        <p class="section-desc">
+          Focuslet은 집중 시작부터 휴식 전환까지의 핵심 흐름을 방해하지 않도록 단순한 구조로 구성했습니다.
+        </p>
+      </div>
+
+      <div class="features">
         <article class="feature-card">
           <div class="feature-icon">⏱️</div>
-          <h3>25분 집중 타이머</h3>
-          <p>남은 시간을 크게 보여주고 1초씩 줄어드는 타이머로 현재 집중 상태를 명확하게 확인합니다.</p>
+          <h3>집중 타이머</h3>
+          <p>
+            기본 25분 집중 시간을 제공하고 남은 시간을 큰 숫자로 표시합니다.
+            시작 후에는 1초씩 시간이 줄어들며 현재 집중 상태를 쉽게 확인할 수 있습니다.
+          </p>
         </article>
+
         <article class="feature-card">
           <div class="feature-icon">☕</div>
-          <h3>짧은 휴식과 긴 휴식</h3>
-          <p>집중 종료 후 5분 휴식으로 전환되고 4회 집중 후에는 15분 긴 휴식으로 자연스럽게 이어집니다.</p>
+          <h3>휴식 전환</h3>
+          <p>
+            집중이 끝나면 5분 짧은 휴식으로 전환됩니다.
+            4회 집중이 끝난 뒤에는 15분 긴 휴식으로 넘어가 기본 뽀모도로 흐름을 유지합니다.
+          </p>
         </article>
-        <article class="feature-card">
-          <div class="feature-icon">🔔</div>
-          <h3>종료 알림</h3>
-          <p>집중이나 휴식 시간이 끝나면 다음 단계로 넘어갈 수 있도록 화면 메시지와 알림을 제공합니다.</p>
-        </article>
+
         <article class="feature-card">
           <div class="feature-icon">🏷️</div>
-          <h3>집중 태그</h3>
-          <p>공부, 과제, 독서처럼 세션 목적을 가볍게 표시하고 이전 태그를 다시 사용할 수 있습니다.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">●●○○</div>
-          <h3>오늘 진행 표시</h3>
-          <p>현재 뽀모도로 회차와 하루 진행 상황을 표시해 4회 반복 흐름을 놓치지 않도록 돕습니다.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">📝</div>
-          <h3>하루 회고</h3>
-          <p>하루가 끝난 뒤 짧은 질문에 답하며 오늘의 집중 경험을 간단하게 정리할 수 있습니다.</p>
+          <h3>태그와 회고</h3>
+          <p>
+            공부, 과제, 독서처럼 세션 목적을 태그로 기록할 수 있습니다.
+            하루 끝에는 짧은 질문을 통해 집중 경험을 간단히 정리할 수 있습니다.
+          </p>
         </article>
       </div>
     </section>
 
-    <section class="page section">
-      <div class="download-panel">
-        <div>
-          <h2>Focuslet APK 내려받기</h2>
-          <p>아래 버튼을 누르면 Google Drive에 업로드된 APK 다운로드 링크로 이동합니다.</p>
+    <section id="screenshot" class="screenshot-section page">
+      <div class="screenshot-showcase">
+        <div class="screenshot-copy">
+          <div class="section-label">Preview</div>
+          <h2>한 화면에서 바로 보이는 집중 상태</h2>
+
+          <p>
+            메인 화면은 현재 단계, 남은 시간, 오늘 진행 횟수, 태그, 시작 버튼을 중심으로 구성되어 있습니다.
+            따뜻한 배경과 토마토 포인트 컬러로 부담 없이 집중을 시작할 수 있습니다.
+          </p>
+
+          <div class="screenshot-list">
+            <div><span class="check">✓</span> 중앙 원형 타이머로 남은 시간 확인</div>
+            <div><span class="check">✓</span> 집중, 짧은 휴식, 긴 휴식 상태 구분</div>
+            <div><span class="check">✓</span> 오늘 진행 횟수와 세션 태그 표시</div>
+          </div>
         </div>
-        <a class="button" href="https://drive.google.com/uc?export=download&id=1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm" target="_blank" rel="noopener noreferrer">APK 다운로드</a>
+
+        <div class="screenshot-img">
+          <img src="./screen.jpg" alt="Focuslet 앱 스크린샷" />
+        </div>
       </div>
     </section>
 
-    <section class="page policy" id="privacy">
-      <div class="policy-card">
-        <h2>Privacy Policy / 개인정보 처리방침</h2>
-        <div class="policy-grid">
-          <div>
-            <h3>English</h3>
-            <ul>
-              <li>Focuslet is a simple Pomodoro timer app designed for personal productivity.</li>
-              <li>The app does not require sign-up and does not collect personal information through a server.</li>
-              <li>Timer records, tags, and reflection notes may be stored locally on the user's device only.</li>
-              <li>The APK download is provided through Google Drive. Google services may apply their own privacy policy when users access the download link.</li>
-              <li>Users may delete locally stored app data by clearing the app data or uninstalling the app from their device.</li>
-            </ul>
-          </div>
-          <div>
-            <h3>한국어</h3>
-            <ul>
-              <li>Focuslet은 개인 생산성을 위한 간단한 뽀모도로 타이머 앱입니다.</li>
-              <li>앱은 회원가입을 요구하지 않으며 서버를 통해 개인정보를 수집하지 않습니다.</li>
-              <li>타이머 기록, 태그, 회고 메모는 사용자의 기기 내부에만 저장될 수 있습니다.</li>
-              <li>APK 다운로드는 Google Drive를 통해 제공됩니다. 다운로드 링크 접속 시 Google 서비스의 개인정보 처리방침이 적용될 수 있습니다.</li>
-              <li>사용자는 기기 설정에서 앱 데이터를 삭제하거나 앱을 제거하여 로컬 저장 데이터를 지울 수 있습니다.</li>
-            </ul>
-          </div>
-        </div>
+    <section id="download" class="page">
+      <div class="download">
+        <img src="./app_icon.png" alt="Focuslet 로고" />
+
+        <h2>Focuslet APK 다운로드</h2>
+
+        <p>
+          아래 버튼을 누르면 Google Drive에 업로드된 APK 파일 페이지로 이동합니다.
+          Android 기기에서 설치하여 Focuslet 뽀모도로 타이머를 사용할 수 있습니다.
+        </p>
+
+        <a
+          class="btn"
+          href="https://drive.google.com/file/d/1jHbkFmr-jNnmDlAMmASyqFlvD_JqAOWm/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          APK 다운로드하기
+        </a>
       </div>
     </section>
   </main>
 
-  <footer class="page">
-    © 2026 Focuslet. A simple Pomodoro timer app for focused study and work.
+  <footer>
+    <div class="page">
+      <div class="policy">
+        <div class="policy-card">
+          <h3>Privacy Policy</h3>
+          <p>
+            Focuslet does not require user login and does not collect personally identifiable information.
+            Timer records, tags, and reflection notes are intended to be stored locally on the user's device.
+            The app does not sell personal data to third parties. If external services are added in the future,
+            this policy will be updated accordingly.
+          </p>
+        </div>
+
+        <div class="policy-card">
+          <h3>개인정보 처리방침</h3>
+          <p>
+            Focuslet은 사용자 로그인을 요구하지 않으며 개인을 식별할 수 있는 정보를 수집하지 않습니다.
+            타이머 기록, 태그, 회고 내용은 사용자의 기기 내 로컬 저장을 기준으로 합니다.
+            앱은 개인정보를 제3자에게 판매하지 않습니다. 추후 외부 서비스가 추가될 경우 본 방침은 그에 맞게 수정됩니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 Focuslet. Pomodoro Timer App.
+      </div>
+    </div>
   </footer>
 </body>
 </html>
